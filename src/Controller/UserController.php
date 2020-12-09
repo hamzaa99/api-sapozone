@@ -63,8 +63,10 @@ class UserController extends AbstractController
      */
     public function getAll(): JsonResponse
     {
-        $users = $this->userRepository->findAll();
+        /*$users = $this->userRepository->findAll();
+
         $data = [];
+
 
         foreach ($users as $user) {
             $data[] = [
@@ -74,6 +76,14 @@ class UserController extends AbstractController
 
             ];
         }
+        */
+
+        $data[]=[
+            'id' =>1,
+            'username' => 'douter',
+            'password' => 'seul',
+
+        ];
 
         return new JsonResponse($data, Response::HTTP_OK);
     }
