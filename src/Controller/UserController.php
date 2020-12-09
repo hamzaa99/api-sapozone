@@ -29,12 +29,20 @@ class UserController extends AbstractController
     public function home(): JsonResponse
     {
 
-        $data=[
-            'id' =>'1',
-            'username' => 'user1',
-            'password' => 'pass1',
+        $users = $this->userRepository->findAll();
 
-        ];
+        $data = [];
+
+
+        foreach ($users as $user) {
+            $data[] = [
+                'id' => $user->getId(),
+                'username' => $user->getUsername(),
+                'password' => $user->getPassword(),
+
+            ];
+        }
+
 
         return new JsonResponse($data, Response::HTTP_OK);
     }
@@ -56,7 +64,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/users/", name="add_user", methods={"POST"})
+     * @Route("/users/", name="add", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
      */
