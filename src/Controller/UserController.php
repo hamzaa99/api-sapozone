@@ -21,6 +21,24 @@ class UserController extends AbstractController
         $this->userRepository = $userRepository;
     }
 
+
+
+    /**
+     * @Route("/", name="home", methods={"get"})
+     */
+    public function home(): JsonResponse
+    {
+
+        $data=[
+            'id' =>'1',
+            'username' => 'douter',
+            'password' => 'seul',
+
+        ];
+
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
+
     /**
      * @Route("/users/", name="add_user", methods={"POST"})
      */
@@ -78,8 +96,8 @@ class UserController extends AbstractController
         }
         */
 
-        $data[]=[
-            'id' =>1,
+        $data=[
+            'id' =>'1',
             'username' => 'douter',
             'password' => 'seul',
 
@@ -95,8 +113,8 @@ class UserController extends AbstractController
         $user = $this->userRepository->findOneBy(['id' => $id]);
         $data = json_decode($request->getContent(), true);
 
-        empty($data['username']) ? true : $user->setFirstName($data['username']);
-        empty($data['password']) ? true : $user->setLastName($data['password']);
+        empty($data['username']) ? true : $user->setUsername($data['username']);
+        empty($data['password']) ? true : $user->setPassword($data['password']);
 
         $updatedUser = $this->userRepository->updateUser($user);
 
