@@ -31,8 +31,8 @@ class UserController extends AbstractController
 
         $data=[
             'id' =>'1',
-            'username' => 'douter',
-            'password' => 'seul',
+            'username' => 'user1',
+            'password' => 'pass1',
 
         ];
 
@@ -47,13 +47,14 @@ class UserController extends AbstractController
 
         $data=[
             'id' =>'1',
-            'username' => 'douter',
-            'password' => 'seul',
+            'username' => 'user2',
+            'password' => 'pass2',
 
         ];
 
         return new JsonResponse($data, Response::HTTP_OK);
     }
+
     /**
      * @Route("/users/", name="add_user", methods={"POST"})
      * @param Request $request
