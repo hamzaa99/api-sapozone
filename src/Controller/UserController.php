@@ -40,7 +40,24 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Route("/test", name="test")
+     */
+    public function test(): JsonResponse
+    {
+
+        $data=[
+            'id' =>'1',
+            'username' => 'douter',
+            'password' => 'seul',
+
+        ];
+
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
+    /**
      * @Route("/users/", name="add_user", methods={"POST"})
+     * @param Request $request
+     * @return JsonResponse
      */
     public function add(Request $request): JsonResponse
     {
@@ -77,11 +94,11 @@ class UserController extends AbstractController
         return new JsonResponse($data, Response::HTTP_OK);
     }
     /**
-     * @Route("/users", name="get_all_customers", methods={"GET"})
+     * @Route("/users", name="getall", methods={"GET"})
      */
     public function getAll(): JsonResponse
     {
-        /*$users = $this->userRepository->findAll();
+        $users = $this->userRepository->findAll();
 
         $data = [];
 
@@ -94,14 +111,7 @@ class UserController extends AbstractController
 
             ];
         }
-        */
 
-        $data=[
-            'id' =>'1',
-            'username' => 'douter',
-            'password' => 'seul',
-
-        ];
 
         return new JsonResponse($data, Response::HTTP_OK);
     }
