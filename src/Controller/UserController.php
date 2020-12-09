@@ -40,7 +40,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/test", name="test")
+     * @Route("/test", name="test", methods={"get"})
      */
     public function test(): JsonResponse
     {
