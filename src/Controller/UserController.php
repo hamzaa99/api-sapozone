@@ -69,7 +69,8 @@ class UserController extends AbstractController
         $user = $this->userRepository->findOneBy(['id' => $id]);
 
         $data = $user->toArray();
-
+        if (empty($data)) return new JsonResponse(['Error' => 'this user doesnt exist!'], Response::HTTP_OK);
+    else
         return new JsonResponse($data, Response::HTTP_OK);
     }
     /**
