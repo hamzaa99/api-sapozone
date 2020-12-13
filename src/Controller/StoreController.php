@@ -78,7 +78,7 @@ class StoreController extends AbstractController
         return new JsonResponse($data, Response::HTTP_OK);
     }
     /**
-     * @Route("/stores/", name="getall", methods={"GET"})
+     * @Route("/stores/", name="getAll", methods={"GET"})
      */
     public function getAll(): JsonResponse
     {
