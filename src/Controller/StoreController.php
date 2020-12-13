@@ -84,14 +84,13 @@ class StoreController extends AbstractController
     {
         $stores = $this->storeRepository->findAll();
 
-        $data = [];
+        $data = ['test'=> 'stores'];
 
-
-        foreach ($stores as $store) {
+      /*  foreach ($stores as $store) {
             $data[] = [
                 $store->toArray()
             ];
-        }
+        }*/
 
 
         return new JsonResponse($data, Response::HTTP_OK);
