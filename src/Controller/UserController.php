@@ -62,7 +62,7 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/users/{id}", name="get_one_user", methods={"GET"})
+     * @Route("/users/{id}", name="getOneUser", methods={"GET"})
      */
     public function getOneUser($id):JsonResponse
     {
