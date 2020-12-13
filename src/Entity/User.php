@@ -31,7 +31,7 @@ class User
 
 
     /**
-     * @ORM\OneToOne(targetEntity=Store::class, mappedBy="Owner", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Store::class, mappedBy="Owner", cascade={"persist", "remove"},nullable=true)
      */
     private $Store;
 

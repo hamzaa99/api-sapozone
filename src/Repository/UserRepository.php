@@ -22,12 +22,13 @@ class UserRepository extends ServiceEntityRepository
         $this->manager=$manager;
     }
 
-    public function saveUser($username, $password)
+    public function saveUser($username,$email, $password)
     {
         $newuser = new User();
 
         $newuser
             ->setUsername($username)
+            ->setEmail($email)
             ->setPassword($password);
 
         $this->manager->persist($newuser);

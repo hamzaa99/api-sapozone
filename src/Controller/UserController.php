@@ -30,10 +30,7 @@ class UserController extends AbstractController
     {
 
         $data=[
-            'id' =>'1',
-            'username' => 'user2',
-            'password' => 'pass2',
-
+            'message' =>'bienvenue dans l\'api sapozone'
         ];
 
         return new JsonResponse($data, Response::HTTP_OK);
@@ -49,15 +46,16 @@ class UserController extends AbstractController
 
         $data = json_decode($request->getContent(), true);
 
+        $email = $data['email'];
         $username = $data['username'];
         $password = $data['password'];
 
 
-        if (empty($username) || empty($password)) {
+        if (empty($username) || empty($password)|| empty($email)) {
             throw new NotFoundHttpException('Expecting mandatory parameters!');
         }
 
-        $this->userRepository->saveUser($username,$password);
+        $this->userRepository->saveUser($username,$email, $password);
 
         return new JsonResponse(['status' => 'Customer created!'], Response::HTTP_CREATED);
     }
@@ -70,11 +68,7 @@ class UserController extends AbstractController
     {
         $user = $this->userRepository->findOneBy(['id' => $id]);
 
-        $data = [
-            'id' => $user->getId(),
-            'UserName' => $user->getUsername(),
-            'PassWord' => $user->getPassword(),
-        ];
+        $data = $user->toArray();
 
         return new JsonResponse($data, Response::HTTP_OK);
     }
@@ -98,7 +92,7 @@ class UserController extends AbstractController
         return new JsonResponse($data, Response::HTTP_OK);
     }
     /**
-     * @Route("/customers/{id}", name="update_customer", methods={"PUT"})
+     * @Route("/users/{id}", name="update_customer", methods={"PUT"})
      */
     public function updateUser($id, Request $request): JsonResponse
     {
@@ -107,13 +101,21 @@ class UserController extends AbstractController
 
         empty($data['username']) ? true : $user->setUsername($data['username']);
         empty($data['password']) ? true : $user->setPassword($data['password']);
+        empty($data['name']) ? true : $user->setPassword($data['password']);
+        empty($data['firstname']) ? true : $user->setPassword($data['streetname']);
+        empty($data['email']) ? true : $user->setPassword($data['email']);
+        empty($data['streetname']) ? true : $user->setPassword($data['streetname']);
+        empty($data['street_number']) ? true : $user->setPassword($data['street_number']);
+        empty($data['postal_code']) ? true : $user->setPassword($data['postal_code']);
+        empty($data['city']) ? true : $user->setPassword($data['bio']);
+        empty($data['phone_number']) ? true : $user->setPassword($data['phone_number']);
 
         $updatedUser = $this->userRepository->updateUser($user);
 
         return new JsonResponse($updatedUser->toArray(), Response::HTTP_OK);
     }
     /**
-     * @Route("/customers/{id}", name="delete_customer", methods={"DELETE"})
+     * @Route("/users/{id}", name="delete", methods={"DELETE"})
      */
     public function delete($id): JsonResponse
     {

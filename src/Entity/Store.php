@@ -35,12 +35,12 @@ class Store
     private $street_name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $postal_code;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $city;
 
@@ -50,7 +50,7 @@ class Store
     private $bio;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $phone_number;
 
@@ -75,7 +75,7 @@ class Store
     private $Pictures;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $StreetNUMBER;
 
@@ -310,8 +310,11 @@ class Store
         return $this;
     }
 
-    public function toArray(){
-        return [];
+    public function toArray() : Array{
+        return [
+            'name'=>$this.$this->getName()
+
+        ];
     }
 
     

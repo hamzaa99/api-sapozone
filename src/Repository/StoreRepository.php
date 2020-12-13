@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Store;
+use App\Repository\UserRepository;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -47,4 +49,34 @@ class StoreRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+    public function saveStore($Owner,$name)
+    {
+        $newstore = new Store();
+        $user = new User().
+            $user=UserRepository::find($Owner);
+
+        $newstore
+            ->setOwner($user)
+            ->setName($name);
+
+        $this->manager->persist($newstore);
+        $this->manager->flush();
+    }
+
+    public function updateStore($store) : Store
+    {
+        $this->manager->persist($store);
+        $this->manager->flush();
+
+        return $store;
+    }
+    public function removeStore(Store $store)
+    {
+        $this->manager->remove($store);
+        $this->manager->flush();
+
+
+    }
 }
