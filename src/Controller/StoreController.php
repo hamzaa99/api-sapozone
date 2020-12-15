@@ -134,6 +134,8 @@ class StoreController extends AbstractController
     {
         $store = $this->storeRepository->findOneBy(['id' => $id]);
 
+        if(empty($store)) return new JsonResponse(['status' => 'store dosent exist'], Response::HTTP_NO_CONTENT);
+
         $this->storeRepository->removeStore($store);
 
         return new JsonResponse(['status' => 'user deleted'], Response::HTTP_NO_CONTENT);
