@@ -92,7 +92,15 @@ class StoreController extends AbstractController
 
         foreach ($stores as $store) {
             $data[] = [
-                $store->toArray()
+                "name" => $store->getName(),
+                "adresse" => [
+                    "street_number" =>$store->getStreetNUMBER(),
+                    "street_name" =>$store->getStreetName(),
+                    "city" =>$store->getCity(),
+                    "postal_code"=>$store->getPostalCode(),
+                ],
+                "bio" =>$store->getBio(),
+                "owner" => $store->getOwner()->toArray()
             ];
         }
 
