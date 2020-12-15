@@ -21,7 +21,6 @@
         "symfony/yaml": "5.1.*"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "fzaninotto/faker": "^1.9"
     },
     "config": {
