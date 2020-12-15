@@ -109,7 +109,7 @@ class UserController extends AbstractController
         $user = $this->userRepository->findOneBy(['id' => $id]))
         {
 
-        $data = json_decode($request->getContent(), true);
+            $data = json_decode($request->getContent(), true);
 
             empty($data['username']) ? true : $user->setUsername($data['username']);
             empty($data['password']) ? true : $user->setPassword($data['password']);
@@ -123,9 +123,9 @@ class UserController extends AbstractController
             empty($data['phone_number']) ? true : $user->setPhoneNumber($data['phone_number']);
             empty($data['bio']) ? true : $user->setBio($data['bio']);
 
-        $updatedUser = $this->userRepository->updateUser($user);
+            $updatedUser = $this->userRepository->updateUser($user);
 
-        return new JsonResponse($updatedUser->toArray(), Response::HTTP_OK);}
+            return new JsonResponse($updatedUser->toArray(), Response::HTTP_OK);}
         else return new JsonResponse(['status' => 'merde'], Response::HTTP_OK);
     }
     /**
