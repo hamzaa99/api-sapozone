@@ -110,7 +110,10 @@ class UserController extends AbstractController
      */
     public function updateUser($id, Request $request): JsonResponse
     {
-        $user = $this->userRepository->findOneBy(['id' => $id]);
+        if(
+        $user = $this->userRepository->findOneBy(['id' => $id]))
+        {
+
         $data = json_decode($request->getContent(), true);
 
         empty($data['username']) ? true : $user->setUsername($data['username']);
@@ -126,7 +129,8 @@ class UserController extends AbstractController
 
         $updatedUser = $this->userRepository->updateUser($user);
 
-        return new JsonResponse($updatedUser->toArray(), Response::HTTP_OK);
+        return new JsonResponse($updatedUser->toArray(), Response::HTTP_OK);}
+        else return new JsonResponse(['status' => 'merde'], Response::HTTP_OK);
     }
     /**
      * @Route("/users/{id}", name="delete", methods={"DELETE"})
