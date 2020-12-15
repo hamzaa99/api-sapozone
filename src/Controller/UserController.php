@@ -71,15 +71,7 @@ class UserController extends AbstractController
 
         if (empty($user))
             return new JsonResponse(['Error' => 'this user doesnt exist!'], Response::HTTP_OK);
-        $data[] = [
-            'id' => $user->getId(),
-            'firstName' => $user->getFirstname(),
-            'lastName' => $user->getName(),
-            'email' => $user->getEmail(),
-            'phoneNumber' => $user->getPhoneNumber(),
-            'username' => $user->getUsername(),
-            'city' => $user->getCity(),
-        ];
+        $data[] = $user->toArray();
         if (empty($data))
           return new JsonResponse(['Error' => 'this user doesnt exist!'], Response::HTTP_OK);
 
