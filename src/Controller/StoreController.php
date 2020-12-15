@@ -108,7 +108,7 @@ class StoreController extends AbstractController
         return new JsonResponse($data, Response::HTTP_OK);
     }
     /**
-     * @Route("/stores/{id}", name="update_customer", methods={"PUT"})
+     * @Route("/stores/{id}", name="update_store", methods={"PUT"})
      */
     public function updateStore($id, Request $request): JsonResponse
     {
