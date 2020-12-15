@@ -81,6 +81,7 @@ class UserController extends AbstractController
      */
     public function getAll(): JsonResponse
     {
+        /*
         $users = $this->userRepository->findAll();
 
         $data = [];
@@ -92,7 +93,8 @@ class UserController extends AbstractController
         }
 
 
-        return new JsonResponse($data, Response::HTTP_OK);
+        return new JsonResponse($data, Response::HTTP_OK);*/
+        return new JsonResponse(['Error' => 'this user doesnt exist!'], Response::HTTP_OK);
     }
     /**
      * @Route("/users/{id}", name="update_customer", methods={"PUT"})
