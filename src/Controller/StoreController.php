@@ -115,7 +115,7 @@ class StoreController extends AbstractController
         $store = $this->storeRepository->findOneBy(['id' => $id]);
         $data = json_decode($request->getContent(), true);
 
-        empty($data['name']) ? true : $store->setstorename($data['name']);
+        empty($data['name']) ? true : $store->setName($data['name']);
         empty($data['streetname']) ? true : $store->setStreetName($data['streetname']);
         empty($data['street_number']) ? true : $store->setStreetNUMBER($data['street_number']);
         empty($data['city']) ? true : $store->setCity($data['city']);

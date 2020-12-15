@@ -312,7 +312,7 @@ class Store
 
     public function toArray() : Array{
         return [
-            'name'=>$this.$this->getName()
+            'name'=>$this->getName()
 
         ];
     }
