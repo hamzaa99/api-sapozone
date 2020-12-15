@@ -18,34 +18,38 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class StoreController extends AbstractController
 {
 
+
     private $storeRepository;
-    public function __construct(StoreRepository $storeRepository)
+    private $userRepository;
+    public function __construct(StoreRepository $storeRepository,UserRepository $userRepository)
     {
         $this->storeRepository = $storeRepository;
+        $this->userRepository = $userRepository;
     }
 
 
 
 
-
     /**
-     * @Route("/stores/", name="add", methods={"POST"})
+     * @Route("/stores/", name="add_store", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
      */
-    public function add(Request $request): JsonResponse
+    public function add_store(Request $request): JsonResponse
     {
 
         $data = json_decode($request->getContent(), true);
 
-        $owner = $data['owner'];
+        $ownerid = $data['owner'];
         $name = $data['name'];
 
+
+
+        $owner= $this->userRepository->find($ownerid);
 
         if (empty($name) || empty($owner)) {
             throw new NotFoundHttpException('Expecting mandatory parameters!');
         }
-
         $this->storeRepository->saveStore($owner,$name);
         return new JsonResponse(['status' => 'Store created!'], Response::HTTP_CREATED);
     }
