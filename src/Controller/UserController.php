@@ -68,33 +68,42 @@ class UserController extends AbstractController
     {
         $user = $this->userRepository->findOneBy(['id' => $id]);
 
-        $data = $user->toArray();
-       // if (empty($data))
+        $data[] = [
+            'id' => $user->getId(),
+            'firstName' => $user->getFirstame(),
+            'lastName' => $user->getName(),
+            'email' => $user->getEmail(),
+            'phoneNumber' => $user->getPhoneNumber(),
+            'username' => $user->getUsername(),
+            'city' => $user->getCity(),
+        ];
+        if (empty($data))
+          return new JsonResponse(['Error' => 'this user doesnt exist!'], Response::HTTP_OK);
 
-
-            return new JsonResponse(['Error' => 'this user doesnt exist!'], Response::HTTP_OK);
-    //else
-     //   return new JsonResponse($data, Response::HTTP_OK);
+     return new JsonResponse($data, Response::HTTP_OK);
     }
     /**
      * @Route("/users", name="getall", methods={"GET"})
      */
     public function getAll(): JsonResponse
     {
-        /*
         $users = $this->userRepository->findAll();
-
         $data = [];
 
-
-        foreach ($users as $user) {
-            $data[] =
-                $user->toArray();
+        foreach ($users as $users) {
+            $data[] = [
+                'id' => $users->getId(),
+                'firstName' => $users->getFirstame(),
+                'lastName' => $users->getName(),
+                'email' => $users->getEmail(),
+                'phoneNumber' => $users->getPhoneNumber(),
+                'username' => $users->getUsername(),
+                'city' => $users->getCity(),
+            ];
         }
 
+        return new JsonResponse($data, Response::HTTP_OK);
 
-        return new JsonResponse($data, Response::HTTP_OK);*/
-        return new JsonResponse(['Error' => 'this user doesnt exist!'], Response::HTTP_OK);
     }
     /**
      * @Route("/users/{id}", name="update_customer", methods={"PUT"})
