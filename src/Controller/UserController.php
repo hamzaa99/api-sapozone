@@ -66,7 +66,9 @@ class UserController extends AbstractController
      */
     public function getOneUser($id):JsonResponse
     {
-        $user = $this->userRepository->findOneBy(['id' => $id]);
+        if(
+        $user = $this->userRepository->findOneBy(['id' => $id]))
+        {
 
         $data[] = [
             'id' => $user->getId(),
@@ -80,7 +82,8 @@ class UserController extends AbstractController
         if (empty($data))
           return new JsonResponse(['Error' => 'this user doesnt exist!'], Response::HTTP_OK);
 
-     return new JsonResponse($data, Response::HTTP_OK);
+     return new JsonResponse($data, Response::HTTP_OK);}
+          else return new JsonResponse(['status' => 'merde'], Response::HTTP_OK);
     }
     /**
      * @Route("/users", name="getall", methods={"GET"})
