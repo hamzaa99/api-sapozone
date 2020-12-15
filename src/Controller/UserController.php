@@ -111,16 +111,17 @@ class UserController extends AbstractController
 
         $data = json_decode($request->getContent(), true);
 
-        empty($data['username']) ? true : $user->setUsername($data['username']);
-        empty($data['password']) ? true : $user->setPassword($data['password']);
-        empty($data['name']) ? true : $user->setPassword($data['password']);
-        empty($data['firstname']) ? true : $user->setPassword($data['streetname']);
-        empty($data['email']) ? true : $user->setPassword($data['email']);
-        empty($data['streetname']) ? true : $user->setPassword($data['streetname']);
-        empty($data['street_number']) ? true : $user->setPassword($data['street_number']);
-        empty($data['postal_code']) ? true : $user->setPassword($data['postal_code']);
-        empty($data['city']) ? true : $user->setPassword($data['bio']);
-        empty($data['phone_number']) ? true : $user->setPassword($data['phone_number']);
+            empty($data['username']) ? true : $user->setUsername($data['username']);
+            empty($data['password']) ? true : $user->setPassword($data['password']);
+            empty($data['lastname']) ? true : $user->setName($data['name']);
+            empty($data['firstname']) ? true : $user->setFirstname($data['firstname']);
+            empty($data['email']) ? true : $user->setEmail($data['email']);
+            empty($data['streetname']) ? true : $user->setStreetname($data['streetname']);
+            empty($data['street_number']) ? true : $user->setStreetNumber($data['street_number']);
+            empty($data['postal_code']) ? true : $user->setPostalCode($data['postal_code']);
+            empty($data['city']) ? true : $user->setCity($data['city']);
+            empty($data['phone_number']) ? true : $user->setPhoneNumber($data['phone_number']);
+            empty($data['bio']) ? true : $user->setBio($data['bio']);
 
         $updatedUser = $this->userRepository->updateUser($user);
 
