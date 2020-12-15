@@ -72,7 +72,7 @@ class UserController extends AbstractController
 
         $data[] = [
             'id' => $user->getId(),
-            'firstName' => $user->getFirstame(),
+            'firstName' => $user->getFirstname(),
             'lastName' => $user->getName(),
             'email' => $user->getEmail(),
             'phoneNumber' => $user->getPhoneNumber(),
@@ -96,7 +96,7 @@ class UserController extends AbstractController
         foreach ($users as $users) {
             $data[] = [
                 'id' => $users->getId(),
-                'firstName' => $users->getFirstame(),
+                'firstName' => $users->getFirstname(),
                 'lastName' => $users->getName(),
                 'email' => $users->getEmail(),
                 'phoneNumber' => $users->getPhoneNumber(),
