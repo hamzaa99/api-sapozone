@@ -87,9 +87,8 @@ class UserController extends AbstractController
 
 
         foreach ($users as $user) {
-            $data[] = [
-                $user->toArray()
-            ];
+            $data[] =
+                $user->toArray();
         }
 
 
