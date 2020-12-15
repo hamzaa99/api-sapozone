@@ -116,12 +116,12 @@ class StoreController extends AbstractController
         $data = json_decode($request->getContent(), true);
 
         empty($data['name']) ? true : $store->setstorename($data['name']);
-        empty($data['streetname']) ? true : $store->setPassword($data['streetname']);
-        empty($data['street_number']) ? true : $store->setPassword($data['street_number']);
-        empty($data['city']) ? true : $store->setPassword($data['city']);
-        empty($data['bio']) ? true : $store->setPassword($data['bio']);
-        empty($data['phone_number']) ? true : $store->setPassword($data['phone_number']);
-        empty($data['postal_code']) ? true : $store->setPassword($data['postal_code']);
+        empty($data['streetname']) ? true : $store->setStreetName($data['streetname']);
+        empty($data['street_number']) ? true : $store->setStreetNUMBER($data['street_number']);
+        empty($data['city']) ? true : $store->setCity($data['city']);
+        empty($data['bio']) ? true : $store->setBio($data['bio']);
+        empty($data['phone_number']) ? true : $store->setPhoneNumber($data['phone_number']);
+        empty($data['postal_code']) ? true : $store->setPostalCode($data['postal_code']);
 
         $updatedstore = $this->storeRepository->updatestore($store);
 
