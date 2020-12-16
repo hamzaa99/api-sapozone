@@ -76,7 +76,7 @@ class UserController extends AbstractController
 
         $email = $data['email'];
         $username = $data['username'];
-        $password = password_hash($data['password'],PASSWORD_BCRYPT);
+        $password =password_hash($data['password'],PASSWORD_BCRYPT);
 
 
         if (empty($username) || empty($password)) {
