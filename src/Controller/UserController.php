@@ -76,7 +76,7 @@ class UserController extends AbstractController
 
         $email = $data['email'];
         $username = $data['username'];
-        $password = $data['password'];
+        $password = password_hash($data['password'],PASSWORD_BCRYPT);
 
 
         if (empty($username) || empty($password)) {
@@ -86,7 +86,7 @@ class UserController extends AbstractController
         $user=$this->userRepository->findOneBy(['username' => $username]);
         $data=$user->toArray();
 
-        if(password_hash($password,PASSWORD_BCRYPT)==$user->getPassword())
+        if($password==$user->getPassword())
             return new JsonResponse($data, Response::HTTP_CREATED);
         else return new JsonResponse(['status' => 'error','message' => 'wrong-password','password' => password_hash($password,PASSWORD_BCRYPT)], Response::HTTP_CREATED);
     }
