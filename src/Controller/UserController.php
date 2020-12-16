@@ -68,7 +68,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/sign_in/", name="signin", methods={"GET"})
+     * @Route("/sign_in/", name="signin", methods={"POST"})
      */
     public function signin(Request $request):JsonResponse
     {
