@@ -49,7 +49,7 @@ class UserController extends AbstractController
 
         $email = $data['email'];
         $username = $data['username'];
-        $password =password_hash($data['password'],PASSWORD_BCRYPT);
+        $password =$data['password'];
 
 
         if (empty($username) || empty($password)|| empty($email)) {
@@ -76,7 +76,7 @@ class UserController extends AbstractController
 
         $email = $data['email'];
         $username = $data['username'];
-        $password =password_hash($data['password'],PASSWORD_BCRYPT);
+        $password =$data['password'];
 
 
         if (empty($username) || empty($password)) {
