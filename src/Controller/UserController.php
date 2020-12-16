@@ -57,7 +57,11 @@ class UserController extends AbstractController
 
         $this->userRepository->saveUser($username,$email, $password);
 
-        return new JsonResponse(['status' => 'Customer created!'], Response::HTTP_OK);
+        $data=[
+            'status' =>'succes'
+        ];
+
+        return new JsonResponse($data, Response::HTTP_OK);
     }
 
 
