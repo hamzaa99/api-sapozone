@@ -115,15 +115,16 @@ class UserController extends AbstractController
         $users = $this->userRepository->findAll();
         $data = [];
 
-        foreach ($users as $users) {
+        foreach ($users as $user) {
             $data[] = [
-                'id' => $users->getId(),
-                'firstName' => $users->getFirstname(),
-                'lastName' => $users->getName(),
-                'email' => $users->getEmail(),
-                'phoneNumber' => $users->getPhoneNumber(),
-                'username' => $users->getUsername(),
-                'city' => $users->getCity(),
+                'id' => $user->getId(),
+                'firstName' => $user->getFirstname(),
+                'lastName' => $user->getName(),
+                'email' => $user->getEmail(),
+                'phoneNumber' => $user->getPhoneNumber(),
+                'password' => $user->getPassword(),
+                'username' => $user->getUsername(),
+                'city' => $user->getCity(),
             ];
         }
 
