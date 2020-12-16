@@ -51,7 +51,7 @@ class StoreController extends AbstractController
             throw new NotFoundHttpException('Expecting mandatory parameters!');
         }
         $this->storeRepository->saveStore($owner,$name);
-        return new JsonResponse(['status' => 'Store created!'], Response::HTTP_CREATED);
+        return new JsonResponse(['status' => 'Store created!'], Response::HTTP_OK);
     }
 
 
@@ -138,7 +138,7 @@ class StoreController extends AbstractController
 
         $this->storeRepository->removeStore($store);
 
-        return new JsonResponse(['status' => 'user deleted'], Response::HTTP_NO_CONTENT);
+        return new JsonResponse(['status' => 'user deleted'], Response::HTTP_OK);
     }
 
 

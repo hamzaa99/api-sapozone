@@ -57,7 +57,7 @@ class UserController extends AbstractController
 
         $this->userRepository->saveUser($username,$email, $password);
 
-        return new JsonResponse(['status' => 'Customer created!'], Response::HTTP_CREATED);
+        return new JsonResponse(['status' => 'Customer created!'], Response::HTTP_OK);
     }
 
 
@@ -137,7 +137,7 @@ class UserController extends AbstractController
 
         $this->userRepository->removeUser($user);
 
-        return new JsonResponse(['status' => 'user deleted'], Response::HTTP_NO_CONTENT);
+        return new JsonResponse(['status' => 'user deleted'], Response::HTTP_OK);
     }
 
 
