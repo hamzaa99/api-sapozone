@@ -49,7 +49,7 @@ class UserController extends AbstractController
 
         $email = $data['email'];
         $username = $data['username'];
-        $password = $data['password'];
+        $password =password_hash($data['password'],PASSWORD_BCRYPT);
 
 
         if (empty($username) || empty($password)|| empty($email)) {
@@ -67,6 +67,29 @@ class UserController extends AbstractController
         return new JsonResponse($data, Response::HTTP_OK);
     }
 
+    /**
+     * @Route("/sign_in/", name="signin", methods={"GET"})
+     */
+    public function signin(Request $request):JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $email = $data['email'];
+        $username = $data['username'];
+        $password = $data['password'];
+
+
+        if ((empty($username) && empty($email)) || empty($password)) {
+            return new JsonResponse(['Error' => 'expecting mandatory parameters'], Response::HTTP_CREATED);
+        }
+
+        $user=$this->userRepository->findOneBy(['username' => $username]);
+        $data=$user->toArray();
+
+        if(password_hash($password,PASSWORD_BCRYPT)==$user->getPassword())
+            return new JsonResponse($data, Response::HTTP_CREATED);
+        else return new JsonResponse(['status' => 'error','message' => 'wrong-password'], Response::HTTP_CREATED);
+    }
 
     /**
      * @Route("/users/{id}", name="getOneUser", methods={"GET"})
