@@ -88,7 +88,7 @@ class UserController extends AbstractController
 
         if(password_hash($password,PASSWORD_BCRYPT)==$user->getPassword())
             return new JsonResponse($data, Response::HTTP_CREATED);
-        else return new JsonResponse(['status' => 'error','message' => 'wrong-password'], Response::HTTP_CREATED);
+        else return new JsonResponse(['status' => 'error','message' => 'wrong-password','password' => password_hash($password,PASSWORD_BCRYPT)], Response::HTTP_CREATED);
     }
 
     /**
