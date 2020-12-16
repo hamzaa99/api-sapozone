@@ -79,7 +79,7 @@ class UserController extends AbstractController
         $password = $data['password'];
 
 
-        if ((empty($username) && empty($email)) || empty($password)) {
+        if (empty($username) || empty($password)) {
             return new JsonResponse(['Error' => 'expecting mandatory parameters'], Response::HTTP_CREATED);
         }
 
