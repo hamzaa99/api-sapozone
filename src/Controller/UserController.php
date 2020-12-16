@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -56,9 +57,11 @@ class UserController extends AbstractController
         }
 
         $this->userRepository->saveUser($username,$email, $password);
-
+        $user = new User();
+        $user=$this->userRepository->findOneBy(['username' => $username]);
         $data=[
-            'status' =>'succes'
+            'status' =>'succes',
+            'user' => $user->toArray()
         ];
 
         return new JsonResponse($data, Response::HTTP_OK);
