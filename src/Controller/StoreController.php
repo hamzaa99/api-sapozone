@@ -98,8 +98,9 @@ class StoreController extends AbstractController
                     "street_number" =>$store->getStreetNUMBER(),
                     "street_name" =>$store->getStreetName(),
                     "city" =>$store->getCity(),
-                    "postal_code"=>$store->getPostalCode(),
+                    
                 ],
+                "postal_code"=>$store->getPostalCode(),
                 "bio" =>$store->getBio(),
                 "owner" => $store->getOwner()->toArray()
             ];
