@@ -144,7 +144,7 @@ class UserController extends AbstractController
 
             empty($data['username']) ? true : $user->setUsername($data['username']);
             empty($data['password']) ? true : $user->setPassword($data['password']);
-            empty($data['lastname']) ? true : $user->setName($data['name']);
+            empty($data['lastname']) ? true : $user->setName($data['lastname']);
             empty($data['firstname']) ? true : $user->setFirstname($data['firstname']);
             empty($data['email']) ? true : $user->setEmail($data['email']);
             empty($data['streetname']) ? true : $user->setStreetname($data['streetname']);
