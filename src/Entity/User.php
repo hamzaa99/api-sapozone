@@ -156,12 +156,10 @@ class User
             'email' =>$this->getEmail(),
             'firstname' =>$this->getFirstname(),
             'familyname' =>$this->getName(),
-            'adresse' => [
                 'street_number' =>$this->getStreetNumber(),
                 'street_name' =>$this->getStreetname(),
                 'postal_code' =>$this->getPostalCode(),
                 'city' =>$this->getCity(),
-            ],
             'phone_number'=>$this->getPhoneNumber()
 
         ];
