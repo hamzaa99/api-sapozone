@@ -160,7 +160,8 @@ class User
                 'street_name' =>$this->getStreetname(),
                 'postal_code' =>$this->getPostalCode(),
                 'city' =>$this->getCity(),
-            'phone_number'=>$this->getPhoneNumber()
+            'phone_number'=>$this->getPhoneNumber(),
+            'bio'=>$this->getBio()
 
         ];
     }
