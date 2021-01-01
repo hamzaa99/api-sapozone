@@ -155,7 +155,7 @@ class User
             'password' => $this->getPassword(),
             'email' =>$this->getEmail(),
             'firstname' =>$this->getFirstname(),
-            'familyname' =>$this->getName(),
+            'lastname' =>$this->getName(),
                 'street_number' =>$this->getStreetNumber(),
                 'street_name' =>$this->getStreetname(),
                 'postal_code' =>$this->getPostalCode(),
