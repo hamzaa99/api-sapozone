@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\RequestRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=RequestRepository::class)
+ * @ApiResource
  */
 class Request
 {
@@ -14,6 +16,7 @@ class Request
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @group("post:read")
      */
     private $id;
 
@@ -36,11 +39,13 @@ class Request
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @group("post:read")
      */
     private $max_price;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @group("post:read")
      */
     private $max_lead_time;
 

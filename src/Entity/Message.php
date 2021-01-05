@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\MessageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=MessageRepository::class)
+ * @ApiResource
  */
 class Message
 {
@@ -14,6 +16,7 @@ class Message
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @group("post:read")
      */
     private $id;
 
@@ -31,11 +34,13 @@ class Message
 
     /**
      * @ORM\Column(type="datetime")
+     * @group("post:read")
      */
     private $date;
 
     /**
      * @ORM\Column(type="text")
+     * @group("post:read")
      */
     private $content;
 

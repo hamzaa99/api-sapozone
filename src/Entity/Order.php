@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use App\Repository\OrderRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+
 
 /**
  * @ORM\Entity(repositoryClass=OrderRepository::class)
  * @ORM\Table(name="`order`")
+ * @ApiResource
  */
 class Order
 {
@@ -15,6 +18,7 @@ class Order
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @group("post:read")
      */
     private $id;
 
@@ -32,21 +36,25 @@ class Order
 
     /**
      * @ORM\Column(type="integer")
+     * @group("post:read")
      */
     private $price;
 
     /**
      * @ORM\Column(type="datetime")
+     * @group("post:read")
      */
     private $date;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @group("post:read")
      */
     private $detail;
 
     /**
      * @ORM\Column(type="integer")
+     * @group("post:read")
      */
     private $status;
 

@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ApiResource
  */
 class User
 {
@@ -21,61 +25,74 @@ class User
 
     /**
      * @ORM\Column(type="string", length=190)
+     * @group("post:read")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=190)
+     *
+     * @group("post:read")
      */
     private $password;
 
 
     /**
      * @ORM\OneToOne(targetEntity=Store::class, mappedBy="Owner", cascade={"persist", "remove"})
+     *
      */
     private $Store;
 
     /**
+     * @group("post:read")
      * @ORM\Column(type="string", length=190, nullable=true)
      */
     private $email;
 
     /**
+     * @group("post:read")
      * @ORM\Column(type="string", length=190, nullable=true)
      */
     private $name;
 
     /**
+     * @group("post:read")
      * @ORM\Column(type="string", length=190, nullable=true)
      */
     private $firstname;
 
     /**
+     * @group("post:read")
      * @ORM\Column(type="string", length=190, nullable=true)
      */
     private $streetname;
 
     /**
+     * @group("post:read")
      * @ORM\Column(type="integer", nullable=true)
      */
     private $streetNumber;
 
     /**
+     * @group("post:read")
      * @ORM\Column(type="integer", nullable=true)
      */
     private $postalCode;
 
     /**
+     * @group("post:read")
      * @ORM\Column(type="string", length=190, nullable=true)
      */
     private $city;
 
     /**
+     * @group("post:read")
      * @ORM\Column(type="text", nullable=true)
      */
     private $bio;
 
     /**
+     * @group("post:read")
      * @ORM\Column(type="integer", nullable=true)
      */
     private $phoneNumber;
@@ -106,7 +123,11 @@ class User
     private $requests;
 
     /**
-     * @ORM\OneToOne(targetEntity=Picture::class, cascade={"persist", "remove"})
+     * @var MediaObject|null
+     *
+     * @ORM\OneToOne(targetEntity=MediaObject::class)
+     * @ORM\JoinColumn(nullable=true)
+     * @ApiProperty(iri="http://schema.org/image")
      */
     private $Profile_picture;
 

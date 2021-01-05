@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Picture;
 use App\Entity\User;
+use App\Repository\PictureRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -132,9 +135,9 @@ class UserController extends AbstractController
 
     }
     /**
-     * @Route("/users/{id}", name="update_customer", methods={"PUT"})
+     * @Route("/users/{id}", name="updateUser", methods={"PUT"})
      */
-    public function updateUser($id, Request $request): JsonResponse
+    public function updateUser($id, Request $request,EntityManager $em): JsonResponse
     {
         if(
         $user = $this->userRepository->findOneBy(['id' => $id]))
@@ -154,10 +157,18 @@ class UserController extends AbstractController
             empty($data['phone_number']) ? true : $user->setPhoneNumber($data['phone_number']);
             empty($data['bio']) ? true : $user->setBio($data['bio']);
 
+            if (!empty($data['pp'])) {
+                $picture = new Picture();
+                $picture->setLocation($data['pp']);
+                $em->persist($picture);
+                $em->flush();
+                $user->setProfilePicture($data['pp']);
+            }
+
             $updatedUser = $this->userRepository->updateUser($user);
 
             return new JsonResponse($updatedUser->toArray(), Response::HTTP_OK);}
-        else return new JsonResponse(['status' => 'merde'], Response::HTTP_OK);
+        else return new JsonResponse(['status' => 'error'], Response::HTTP_OK);
     }
     /**
      * @Route("/users/{id}", name="delete", methods={"DELETE"})
@@ -170,6 +181,20 @@ class UserController extends AbstractController
 
         return new JsonResponse(['status' => 'user deleted'], Response::HTTP_OK);
     }
+    /**
+     * @Route("/update_pp/{id}", name="update_pp", methods={"PUT"})
+     */
+    public function update_pp($id,Request $request): JsonResponse
+    {
+        $user = $this->userRepository->findOneBy(['id' => $id]);
+        $data = json_decode($request->getContent(), true);
+        $file = $request->files->get('pp');
+
+
+
+    }
+
+
 
 
     /**

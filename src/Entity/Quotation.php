@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use App\Repository\QuotationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+
 
 /**
  * @ORM\Entity(repositoryClass=QuotationRepository::class)
+ * @ApiResource
  */
 class Quotation
 {
@@ -14,11 +17,13 @@ class Quotation
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @group("post:read")
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="quotations")
+     *
      */
     private $Customer;
 
@@ -30,21 +35,25 @@ class Quotation
 
     /**
      * @ORM\Column(type="integer")
+     * @group("post:read")
      */
     private $price;
 
     /**
      * @ORM\Column(type="text")
+     * @group("post:read")
      */
     private $detail;
 
     /**
      * @ORM\Column(type="integer")
+     * @group("post:read")
      */
     private $leadtime;
 
     /**
      * @ORM\Column(type="datetime")
+     * @group("post:read")
      */
     private $date;
 

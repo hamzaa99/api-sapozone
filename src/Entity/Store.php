@@ -6,9 +6,12 @@ use App\Repository\StoreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+
 
 /**
  * @ORM\Entity(repositoryClass=StoreRepository::class)
+ * @ApiResource
  */
 class Store
 {
@@ -16,6 +19,7 @@ class Store
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @group("post:read")
      */
     private $id;
 
@@ -25,32 +29,40 @@ class Store
     private $Owner;
 
     /**
+     *
      * @ORM\Column(type="string", length=255)
+     * @group("post:read")
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255,)
+     *
+     * @ORM\Column(type="string", length=255)
+     * @group("post:read")
      */
     private $street_name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @group("post:read")
      */
     private $postal_code;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @group("post:read")
      */
     private $city;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @group("post:read")
      */
     private $bio;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @group("post:read")
      */
     private $phone_number;
 
@@ -76,6 +88,7 @@ class Store
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @group("post:read")
      */
     private $StreetNUMBER;
 
