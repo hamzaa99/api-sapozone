@@ -3,8 +3,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Picture;
 use App\Repository\UserRepository;
 use App\Repository\StoreRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -112,7 +114,7 @@ class StoreController extends AbstractController
     /**
      * @Route("/stores/{id}", name="update_store", methods={"PUT"})
      */
-    public function updateStore($id, Request $request): JsonResponse
+    public function updateStore($id, Request $request, EntityManager $em): JsonResponse
     {
         $store = $this->storeRepository->findOneBy(['id' => $id]);
         $data = json_decode($request->getContent(), true);
@@ -124,6 +126,13 @@ class StoreController extends AbstractController
         empty($data['bio']) ? true : $store->setBio($data['bio']);
         empty($data['phone_number']) ? true : $store->setPhoneNumber($data['phone_number']);
         empty($data['postal_code']) ? true : $store->setPostalCode($data['postal_code']);
+        if (!empty($data['picture'])) {
+            $picture = new Picture();
+            $picture->setLocation($data['pp']);
+            $em->persist($picture);
+            $em->flush();
+            $store->addPicture($picture);
+        }
 
         $updatedstore = $this->storeRepository->updatestore($store);
 
