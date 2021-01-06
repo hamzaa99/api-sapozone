@@ -120,6 +120,7 @@ class UserController extends AbstractController
         $data = [];
 
         foreach ($users as $user) {
+
             $data[] = [
                 'id' => $user->getId(),
                 'firstName' => $user->getFirstname(),

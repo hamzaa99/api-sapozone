@@ -170,6 +170,9 @@ class User
 
     public function toArray()
     {
+        if ($this->getProfilePicture()!=null)
+        $pp_url =$this->getProfilePicture()->getLocation();
+        else $pp_url="";
         return [
             'id' => $this->getId(),
             'username' => $this->getUsername(),
@@ -183,6 +186,7 @@ class User
                 'city' =>$this->getCity(),
             'phone_number'=>$this->getPhoneNumber(),
             'bio'=>$this->getBio(),
+            'pp'=>$pp_url
 
 
         ];
