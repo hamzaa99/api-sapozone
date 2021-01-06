@@ -325,7 +325,14 @@ class Store
 
     public function toArray() : Array{
         return [
-            'name'=>$this->getName()
+            'name'=>$this->getName(),
+            'streetname'=>$this->getStreetName(),
+            'streetnumber'=>$this->getStreetNUMBER(),
+            'postalcode'=>$this->getPostalCode(),
+            'city'=>$this->getCity(),
+            'bio'=>$this->getBio(),
+            'phone'=>$this->getPhoneNumber(),
+            'owner_id'=>$this->getOwner()->getId()
 
         ];
     }
