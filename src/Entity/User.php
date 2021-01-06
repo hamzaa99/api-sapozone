@@ -183,7 +183,7 @@ class User
                 'city' =>$this->getCity(),
             'phone_number'=>$this->getPhoneNumber(),
             'bio'=>$this->getBio(),
-            'pp'=>$this->getProfilePicture()->getLocation()
+
 
         ];
     }
