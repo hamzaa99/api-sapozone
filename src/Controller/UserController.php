@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Repository\PictureRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -137,7 +138,7 @@ class UserController extends AbstractController
     /**
      * @Route("/users/{id}", name="updateUser", methods={"PUT"})
      */
-    public function updateUser($id, Request $request,EntityManager $em): JsonResponse
+    public function updateUser($id, Request $request,EntityManagerInterface $em): JsonResponse
     {
         if(
         $user = $this->userRepository->findOneBy(['id' => $id]))
