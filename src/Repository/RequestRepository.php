@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Request;
+use App\Entity\Store;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -47,4 +48,21 @@ class RequestRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function saveRequest($Customer,$Store,$detail,$price,$lead)
+    {
+        $newrequest = new Request();
+
+
+        $newrequest
+            ->setCustomer($Customer)
+            ->setStore($Store)
+            ->setDetail($detail)
+            ->setMaxPrice($price)
+            ->setMaxLeadTime($lead);
+
+        $this->manager->persist($newrequest);
+        $this->manager->flush();
+        return $newrequest->getId();
+    }
+
 }
