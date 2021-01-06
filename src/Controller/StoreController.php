@@ -7,6 +7,7 @@ use App\Entity\Picture;
 use App\Repository\UserRepository;
 use App\Repository\StoreRepository;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -114,7 +115,7 @@ class StoreController extends AbstractController
     /**
      * @Route("/stores/{id}", name="update_store", methods={"PUT"})
      */
-    public function updateStore($id, Request $request, EntityManager $em): JsonResponse
+    public function updateStore($id, Request $request, EntityManagerInterface $em): JsonResponse
     {
         $store = $this->storeRepository->findOneBy(['id' => $id]);
         $data = json_decode($request->getContent(), true);
