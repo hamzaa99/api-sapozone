@@ -51,10 +51,9 @@ class RequestController extends AbstractController
         $storeid = $data['store'];
         $customerid = $data['customer'];
         $detail = $data['detail'];
-        $price = $data['price'];
-        $lead = $data['lead'];
-        if (empty($price)) $price=0;
-        if (empty($lead)) $lead=0;
+        if (empty($data['price'])) $price=0;else $price = $data['price'];
+
+        if (empty($data['lead'])) $lead=0;else $lead = $data['lead'];
 
 
         $customer= $this->userRepository->find($customerid);
@@ -64,7 +63,7 @@ class RequestController extends AbstractController
             throw new NotFoundHttpException('Expecting mandatory parameters!');
         }
         $id=$this->requestRepository->saveRequest($customer,$store,$detail,$price,$lead);
-        return new JsonResponse(['status' => 'Store created!','id'=>$id], Response::HTTP_OK);
+        return new JsonResponse(['status' => 'request created!','id'=>$id], Response::HTTP_OK);
     }
 
 /**
@@ -74,14 +73,13 @@ class RequestController extends AbstractController
 public function get_user_requests($id): JsonResponse
 {
 
-
     $customerid = $id;
     $customer= $this->userRepository->find($customerid);
     $requests=$this->requestRepository->findBy(['customer' => $customer]);
     foreach ($requests as $request) {
         $data[] = [
             "id" => $request->getId(),
-            "detail" =>$request->setDetail(),
+            "detail" =>$request->getDetail(),
             "price" =>$request->getMaxPrice(),
             "lead" =>$request->getMaxLeadTime()
         ];
@@ -97,11 +95,11 @@ public function get_user_requests($id): JsonResponse
 
 
         $store= $this->storeRepository->find($id);
-        $requests=$this->requestRepository->findBy(['store' => $store]);
+        $requests=$this->requestRepository->findBy(['Store' => $store]);
         foreach ($requests as $request) {
             $data[] = [
                 "id" => $request->getId(),
-                "detail" =>$request->setDetail(),
+                "detail" =>$request->getDetail(),
                 "price" =>$request->getMaxPrice(),
                 "lead" =>$request->getMaxLeadTime()
             ];
@@ -109,7 +107,7 @@ public function get_user_requests($id): JsonResponse
         return new JsonResponse($data, Response::HTTP_OK);
     }
     /**
-     * @Route("/storeproducts/{id}", name="store_request", methods={"GET"})
+     * @Route("/storeproducts/{id}", name="store_product", methods={"GET"})
      * @return JsonResponse
      */
     public function get_store_products($id): JsonResponse
@@ -118,11 +116,11 @@ public function get_user_requests($id): JsonResponse
 
         $store= $this->storeRepository->find($id);
         $customer= $this->userRepository->find($store->getOwner()->getId());
-        $requests=$this->requestRepository->findBy(['store' => $store,'customer'=>$customer]);
+        $requests=$this->requestRepository->findBy(['Store' => $store,'customer'=>$customer]);
         foreach ($requests as $request) {
             $data[] = [
                 "id" => $request->getId(),
-                "detail" =>$request->setDetail(),
+                "detail" =>$request->getDetail(),
                 "price" =>$request->getMaxPrice(),
                 "lead" =>$request->getMaxLeadTime()
             ];
