@@ -157,6 +157,7 @@ class UserController extends AbstractController
             empty($data['phone_number']) ? true : $user->setPhoneNumber($data['phone_number']);
             empty($data['bio']) ? true : $user->setBio($data['bio']);
 
+            /*
             if (!empty($data['pp'])) {
                 $picture = new Picture();
                 $picture->setLocation($data['pp']);
@@ -164,6 +165,7 @@ class UserController extends AbstractController
                 $em->flush();
                 $user->setProfilePicture($data['pp']);
             }
+            */
 
             $updatedUser = $this->userRepository->updateUser($user);
 
