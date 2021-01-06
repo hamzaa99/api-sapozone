@@ -65,6 +65,7 @@ class StoreRepository extends ServiceEntityRepository
 
         $this->manager->persist($newstore);
         $this->manager->flush();
+        return $newstore->getId();
     }
 
     public function updateStore($store) : Store

@@ -52,8 +52,8 @@ class StoreController extends AbstractController
         if (empty($name) || empty($owner)) {
             throw new NotFoundHttpException('Expecting mandatory parameters!');
         }
-        $this->storeRepository->saveStore($owner,$name);
-        return new JsonResponse(['status' => 'Store created!'], Response::HTTP_OK);
+        $id=$this->storeRepository->saveStore($owner,$name);
+        return new JsonResponse(['status' => 'Store created!','id'=>$id], Response::HTTP_OK);
     }
 
 
