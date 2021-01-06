@@ -166,7 +166,7 @@ class UserController extends AbstractController
                 $picture->setLocation($data['pp']);
                 $em->persist($picture);
                 $em->flush();
-                $user->setProfilePicture($data['pp']);
+                $user->setProfilePicture($picture);
             }
 
 
