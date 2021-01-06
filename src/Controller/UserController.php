@@ -129,6 +129,7 @@ class UserController extends AbstractController
                 'password' => $user->getPassword(),
                 'username' => $user->getUsername(),
                 'city' => $user->getCity(),
+                'pp' =>$user->getProfilePicture()->getLocation()
             ];
         }
 

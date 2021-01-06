@@ -182,7 +182,8 @@ class User
                 'postal_code' =>$this->getPostalCode(),
                 'city' =>$this->getCity(),
             'phone_number'=>$this->getPhoneNumber(),
-            'bio'=>$this->getBio()
+            'bio'=>$this->getBio(),
+            'pp'=>$this->getProfilePicture()->getLocation()
 
         ];
     }
