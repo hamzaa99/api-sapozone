@@ -125,9 +125,9 @@ class User
     /**
      * @var MediaObject|null
      *
-     * @ORM\OneToOne(targetEntity=MediaObject::class)
+     * @ORM\OneToOne(targetEntity=Picture::class)
      * @ORM\JoinColumn(nullable=true)
-     * @ApiProperty(iri="http://schema.org/image")
+
      */
     private $Profile_picture;
 
