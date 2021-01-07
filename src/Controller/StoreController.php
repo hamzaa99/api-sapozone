@@ -81,6 +81,7 @@ class StoreController extends AbstractController
             $data = $stores->toArray();
 
 
+
         return new JsonResponse($data, Response::HTTP_OK);
     }
     /**
