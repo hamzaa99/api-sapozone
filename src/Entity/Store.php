@@ -324,7 +324,7 @@ class Store
     }
 
     public function toArray() : Array{
-        $this->getPictures();
+        $pictures=$this->getPictures();
         if (!empty($pictures)){
             $firstpicture=$pictures->get(0);
             if(!empty($firstpicture))
