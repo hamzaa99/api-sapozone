@@ -97,7 +97,9 @@ class StoreController extends AbstractController
             $pictures = $store->getPictures();
             if (!empty($pictures)){
                 $firstpicture=$pictures->get(0);
-                $url=$firstpicture->getLocation();
+                if(!empty($firstpicture))
+                    $url=$firstpicture->getLocation();
+                else $url="";
             }
             else $url="";
             $data[] = [

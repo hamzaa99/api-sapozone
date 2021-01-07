@@ -327,8 +327,11 @@ class Store
         $this->getPictures();
         if (!empty($pictures)){
             $firstpicture=$pictures->get(0);
+            if(!empty($firstpicture))
             $url=$firstpicture->getLocation();
+            else $url="";
         }
+        else $url="";
         return [
             'id'=>$this->getId(),
             'name'=>$this->getName(),
