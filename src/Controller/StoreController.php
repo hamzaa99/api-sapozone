@@ -126,7 +126,7 @@ class StoreController extends AbstractController
         empty($data['postal_code']) ? true : $store->setPostalCode($data['postal_code']);
         if (!empty($data['picture'])) {
             $picture = new Picture();
-            $picture->setLocation($data['pp']);
+            $picture->setLocation($data['picture']);
             $em->persist($picture);
             $em->flush();
             $store->addPicture($picture);
