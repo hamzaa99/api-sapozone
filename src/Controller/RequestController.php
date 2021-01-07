@@ -97,6 +97,7 @@ public function get_user_requests($id): JsonResponse
         $store= $this->storeRepository->find($id);
         $requests=$this->requestRepository->findBy(['Store' => $store]);
         foreach ($requests as $request) {
+            if ($request->getCustomer()->getId()!=$request->getStore()->getOwner()->getId())
             $data[] = [
                 "id" => $request->getId(),
                 "detail" =>$request->getDetail(),
