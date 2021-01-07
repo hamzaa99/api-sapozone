@@ -324,6 +324,11 @@ class Store
     }
 
     public function toArray() : Array{
+        $this->getPictures();
+        if (!empty($pictures)){
+            $firstpicture=$pictures->get(0);
+            $url=$firstpicture->getLocation();
+        }
         return [
             'id'=>$this->getId(),
             'name'=>$this->getName(),
@@ -333,7 +338,8 @@ class Store
             'city'=>$this->getCity(),
             'bio'=>$this->getBio(),
             'phone'=>$this->getPhoneNumber(),
-            'owner_id'=>$this->getOwner()->getId()
+            'owner_id'=>$this->getOwner()->getId(),
+            'picture'=>$url
 
         ];
     }

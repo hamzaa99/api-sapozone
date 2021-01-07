@@ -94,6 +94,12 @@ class StoreController extends AbstractController
 
 
         foreach ($stores as $store) {
+            $pictures = $store->getPictures();
+            if (!empty($pictures)){
+                $firstpicture=$pictures->get(0);
+                $url=$firstpicture->getLocation();
+            }
+            else $url="";
             $data[] = [
                 "id" => $store->getId(),
                 "name" => $store->getName(),
@@ -102,7 +108,8 @@ class StoreController extends AbstractController
                 "city" =>$store->getCity(),
                 "postal_code"=>$store->getPostalCode(),
                 "bio" =>$store->getBio(),
-                "owner" => $store->getOwner()->getId()
+                "owner" => $store->getOwner()->getId(),
+                "picture" => $url
             ];
         }
 
