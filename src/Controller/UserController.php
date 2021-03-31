@@ -6,9 +6,11 @@ use App\Entity\Picture;
 use App\Entity\User;
 use App\Repository\PictureRepository;
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Exception\ErrorMappingException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -72,9 +74,17 @@ class UserController extends AbstractController
             throw new NotFoundHttpException('Expecting mandatory parameters!');
         }
 
+        $user_email=$this->userRepository->findby(array("email"=>$email));
+        $user_username=$this->userRepository->findby(array("username"=>$username));
+
+        if(!is_null($user_email) or !is_null($user_username))
+            return new JsonResponse(array("error"=>"username or email already taken"),Response::HTTP_INTERNAL_SERVER_ERROR);
+
         $this->userRepository->saveUser($username,$email, $password);
         $user = new User();
-        $user=$this->userRepository->findOneBy(['username' => $username]);
+            $this->userRepository->saveUser($username,$email, $password);
+
+     $user = $this->userRepository->findOneBy(['username' => $username]);
         $data=[
             'status' =>'succes',
             'user' => $user->toArray()
