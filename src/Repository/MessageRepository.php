@@ -6,6 +6,7 @@ use App\Entity\Message;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @method Message|null find($id, $lockMode = null, $lockVersion = null)
@@ -40,7 +41,7 @@ class MessageRepository extends ServiceEntityRepository
         $message = new Message();
 
         $message
-            ->setDate(date())
+            ->setDate(new \DateTime())
             ->setStore($store)
             ->setSender($sender)
             ->setReciever($reciever)

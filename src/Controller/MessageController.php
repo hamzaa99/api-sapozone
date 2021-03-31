@@ -77,7 +77,7 @@ class MessageController extends AbstractController
         return $messages;
     }
     /**
-     * @Route("/messages/}", name="newMessages", methods={"post"})
+     * @Route("/messages", name="addMessage", methods={"post"})
      * @param Request $request
      * @return JsonResponse
      */

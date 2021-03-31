@@ -24,7 +24,7 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=190)
+     * @ORM\Column(type="string", length=190,unique=true)
      * @group("post:read")
      */
     private $username;
@@ -45,7 +45,7 @@ class User
 
     /**
      * @group("post:read")
-     * @ORM\Column(type="string", length=190, nullable=true)
+     * @ORM\Column(type="string", length=190, nullable=true,unique=true)
      */
     private $email;
 
