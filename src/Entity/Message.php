@@ -31,6 +31,27 @@ class Message
      * @ORM\JoinColumn(nullable=false)
      */
     private $Reciever;
+    /**
+     * @ORM\ManyToOne(targetEntity=Store::class, inversedBy="StoreMessages")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $Store;
+
+    /**
+     * @return mixed
+     */
+    public function getStore()
+    {
+        return $this->Store;
+    }
+
+    /**
+     * @param mixed $Store
+     */
+    public function setStore($Store): void
+    {
+        $this->Store = $Store;
+    }
 
     /**
      * @ORM\Column(type="datetime")

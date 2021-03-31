@@ -1,0 +1,10 @@
+
+v	php:S3973"WUse curly braces or indentation to denote the code conditionally executed by this "if".(àÅ†Âøÿÿÿÿ8æëºÃí.
+G	php:S1066"/Merge this if statement with the enclosing one.(Æ¹ÿ¯üÿÿÿÿ
+B	php:S1066"/Merge this if statement with the enclosing one.(÷§«‚
+B	php:S1066"/Merge this if statement with the enclosing one.(äì©÷
+Iphp:S121"0Add curly braces around the nested statement(s).(’œ™ã8÷´»Ãí.
+Nphp:S121"0Add curly braces around the nested statement(s).(àÅ†Âøÿÿÿÿ8æëºÃí.
+G	php:S1066"/Merge this if statement with the enclosing one.(ªÜ¨Ðþÿÿÿÿ
+B	php:S1066"/Merge this if statement with the enclosing one.(§„ä·
+x	php:S1448"`Class "User" has 44 methods, which is greater than 20 authorized. Split it into smaller classes.(¥£ëÔýÿÿÿÿ

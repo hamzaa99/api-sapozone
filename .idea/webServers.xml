@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0f477819-0fe0-4756-98d7-59f156dcbd54" name="icape_preprod" url="http://hybrid2285.fr.ns.planethoster.net">
+        <fileTransfer host="hybrid2285.fr.ns.planethoster.net" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="8f209ca0-7ad9-4250-8246-6286f2802b57" name="cipem_preprod" url="http://hybrid2285.fr.ns.planethoster.net">
+        <fileTransfer host="hybrid2285.fr.ns.planethoster.net" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="4aceed6b-098b-4b2b-87e8-bba0fc9910a3" name="cipem_nassim" url="http://hybrid2285.fr.ns.planethoster.net">
+        <fileTransfer host="hybrid2285.fr.ns.planethoster.net" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="2d2a4d03-8515-4b1c-b2db-edac9b9cf433" name="prod_cipem" url="http://hybrid2285.fr.ns.planethoster.net">
+        <fileTransfer host="hybrid2285.fr.ns.planethoster.net" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

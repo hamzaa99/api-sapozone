@@ -1,0 +1,13 @@
+
+Dphp:S121_"0Add curly braces around the nested statement(s).(äèèÊ
+L	php:S1481Ã"*Remove this unused "$data" local variable.(–ãÛÛıÿÿÿÿ8‰ë˜í.
+?	php:S1481Q"+Remove this unused "$email" local variable.(ôÖx
+N	php:S1854@"9Remove this useless assignment to local variable '$user'.(Ø™Ç
+j	php:S3776"TRefactor this function to reduce its Cognitive Complexity from 26 to the 15 allowed.(°·Î¿
+Iphp:S121j"0Add curly braces around the nested statement(s).(†Š”Ğşÿÿÿÿ
+Iphp:S121m"0Add curly braces around the nested statement(s).(¤õ¤Ğùÿÿÿÿ
+G	php:S1481Ä"*Remove this unused "$file" local variable.(÷¸Ç°8ò‡¥í.
+Iphp:S121]"0Add curly braces around the nested statement(s).(†ëæşÿÿÿÿ
+Ephp:S121°"0Add curly braces around the nested statement(s).(ù×Ö„
+J	php:S1109¯"/Move this closing curly brace to the next line.(Š™£Èıÿÿÿÿ
+G	php:S1481Â"*Remove this unused "$user" local variable.(Ü§Ãç8Œº‘í.

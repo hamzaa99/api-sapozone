@@ -91,6 +91,29 @@ class Store
      * @group("post:read")
      */
     private $StreetNUMBER;
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="Store", orphanRemoval=true)
+     */
+    private $StoreMessages;
+    /**
+     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="Store", orphanRemoval=true)
+     */
+    private $Products;
+     /**
+     * @return mixed
+     */
+    public function getStoresMessages()
+    {
+        return $this->StoresMessages;
+    }
+
+    /**
+     * @param mixed $StoresMessages
+     */
+    public function setStoresMessages($StoresMessages): void
+    {
+        $this->StoresMessages = $StoresMessages;
+    }
 
     public function __construct()
     {

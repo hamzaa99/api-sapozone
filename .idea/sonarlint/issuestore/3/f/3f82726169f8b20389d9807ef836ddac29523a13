@@ -1,0 +1,11 @@
+
+q	php:S3973"WUse curly braces or indentation to denote the code conditionally executed by this "if".(å‰Ä›8òÚ½áí.
+y	php:S1448"aClass "Store" has 33 methods, which is greater than 20 authorized. Split it into smaller classes.(‡šÅÁøÿÿÿÿ
+Nphp:S121"0Add curly braces around the nested statement(s).(Ç×¼Üıÿÿÿÿ8Ç‡Ááí.
+N	php:S1066"/Merge this if statement with the enclosing one.(­ä™Òıÿÿÿÿ8–¹¬›í.
+Nphp:S121"0Add curly braces around the nested statement(s).(Ç×¼Üıÿÿÿÿ8ğßÀáí.
+I	php:S1066"/Merge this if statement with the enclosing one.(ñü²é8–¹¬›í.
+Iphp:S121"0Add curly braces around the nested statement(s).(å‰Ä›8òÚ½áí.
+N	php:S1066"/Merge this if statement with the enclosing one.(¤úÕúúÿÿÿÿ8–¹¬›í.
+H	php:S1066"/Merge this if statement with the enclosing one.(Ëò…x8–¹¬›í.
+K	php:S1068"2Remove this unused "$storemessages" private field.(†ÉÅ[8ß¼›¢†/
