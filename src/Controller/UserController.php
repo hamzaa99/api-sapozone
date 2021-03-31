@@ -80,7 +80,7 @@ class UserController extends AbstractController
         if(!is_null($user_email))
             return new JsonResponse(array("error"=>"Email is already taken"),Response::HTTP_INTERNAL_SERVER_ERROR);
         if (!is_null($user_username))
-            return new JsonResponse(array("error"=>"Username is already taken"),Response::HTTP_INTERNAL_SERVER_ERROR)
+            return new JsonResponse(array("error"=>"Username is already taken"),Response::HTTP_INTERNAL_SERVER_ERROR);
         $this->userRepository->saveUser($username,$email, $password);
         $user = new User();
             $this->userRepository->saveUser($username,$email, $password);
