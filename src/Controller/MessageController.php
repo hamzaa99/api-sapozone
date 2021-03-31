@@ -13,6 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
 
 class MessageController extends AbstractController
 {
@@ -28,9 +30,20 @@ class MessageController extends AbstractController
         $this->messageRepository = $messageRepository;
 
     }
-
     /**
-     * @Route("/messages/user/{id}", name="userMessages", methods={"GET"})
+     * @Route("/test2", name="test", methods={"get"})
+     */
+    public function test(): JsonResponse
+    {
+
+        $data=[
+            'message' =>'bienvenue dans l\'api sapozone'
+        ];
+
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
+    /**
+     * @Route("/messages/user/{id}", name="userMessages", methods={"get"})
      * @return JsonResponse
      */
     public function getUserMessages($id): JsonResponse
@@ -47,10 +60,14 @@ class MessageController extends AbstractController
                 "content"=>$message->getContent()
             ];
                 }
+
+        if(!empty($data) &&count($data))
+        return new JsonResponse($data,Response::HTTP_OK);
+        else $data[]= [ 'message'=>'no data found'];
         return new JsonResponse($data,Response::HTTP_OK);
     }
     /**
-     * @Route("/last_messages/user/{id}", name="userMessages", methods={"GET"})
+     * @Route("/last_messages/user/{id}", name="userlastMessages", methods={"get"})
      * @return JsonResponse
      */
     public function getUserlastMessages($id): JsonResponse
@@ -60,7 +77,7 @@ class MessageController extends AbstractController
         return $messages;
     }
     /**
-     * @Route("/last_messages/user/{id}", name="userMessages", methods={"GET"})
+     * @Route("/last_messages/user/{id}", name="newMessages", methods={"post"})
      * @param Request $request
      * @return JsonResponse
      */

@@ -29,7 +29,7 @@ class MessageRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('m')
             ->Where('m.sender = :sender')
             ->setParameter('sender', $user)
-            ->orWhere('m.reciever = :reciever')
+            ->orWhere('m.Reciever = :reciever')
             ->setParameter('reciever', $user)
             ->getQuery()
             ->getResult()

@@ -40,6 +40,18 @@ class UserController extends AbstractController
 
         return new JsonResponse($data, Response::HTTP_OK);
     }
+    /**
+     * @Route("/test2", name="test2", methods={"get"})
+     */
+    public function test2(): JsonResponse
+    {
+
+        $data=[
+            'message' =>'bienvenue dans l\'api sapozone'
+        ];
+
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
 
     /**
      * @Route("/users/", name="add", methods={"POST"})
