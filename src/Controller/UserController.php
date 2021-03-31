@@ -77,9 +77,10 @@ class UserController extends AbstractController
         $user_email=$this->userRepository->findby(array("email"=>$email));
         $user_username=$this->userRepository->findby(array("username"=>$username));
 
-        if(!is_null($user_email) or !is_null($user_username))
-            return new JsonResponse(array("error"=>"username or email already taken"),Response::HTTP_INTERNAL_SERVER_ERROR);
-
+        if(!is_null($user_email))
+            return new JsonResponse(array("error"=>"Email is already taken"),Response::HTTP_INTERNAL_SERVER_ERROR);
+        if (!is_null($user_username))
+            return new JsonResponse(array("error"=>"Username is already taken"),Response::HTTP_INTERNAL_SERVER_ERROR)
         $this->userRepository->saveUser($username,$email, $password);
         $user = new User();
             $this->userRepository->saveUser($username,$email, $password);
