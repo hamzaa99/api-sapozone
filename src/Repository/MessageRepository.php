@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Message;
+use App\Entity\Store;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Validator\Constraints\DateTime;
 
@@ -16,9 +18,11 @@ use Symfony\Component\Validator\Constraints\DateTime;
  */
 class MessageRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry,EntityManagerInterface $manager)
     {
         parent::__construct($registry, Message::class);
+        $this->manager=$manager;
+
     }
 
     // /**
@@ -36,16 +40,15 @@ class MessageRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    public function saveMessage($sender,$reciever, $store,$content)
+    public function saveMessage(User $sender,User $reciever,Store $store,string $content)
     {
         $message = new Message();
 
-        $message
-            ->setDate(new \DateTime())
-            ->setStore($store)
-            ->setSender($sender)
-            ->setReciever($reciever)
-            ->setContent($content);
+        $message->setDate(new \DateTime());
+        $message->setStore($store);
+        $message->setSender($sender);
+        $message->setReciever($reciever);
+        $message->setContent($content);
 
         $this->manager->persist($message);
         $this->manager->flush();

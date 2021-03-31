@@ -88,6 +88,12 @@ class MessageController extends AbstractController
             $sender = $this->userRepository->find($data['id_sender']);
             $reciever = $this->userRepository->find($data['id_reciever']);
             $store = $this->storeRepository->find($data['id_store']);
+            if(is_null($sender) ||is_null($reciever)||is_null($store)){
+                $data=[
+                    'error'=>"reciever not found"
+                ];
+                return new JsonResponse($data,Response::HTTP_OK);
+            }
          $this->messageRepository->saveMessage($sender,$reciever,$store,$data['content']);
             $data=[
                 'status' =>'succes'
