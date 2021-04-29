@@ -37,8 +37,30 @@ class MessageRepository extends ServiceEntityRepository
             ->orWhere('m.Reciever = :reciever')
             ->setParameter('reciever', $user)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
+    }
+    public function findUserConv(User $user){
+
+        $sql = 'SELECT m.id, m.sender_id, m.reciever_id, m.date, m.content from message m JOIN (
+                    SELECT sender_id, reciever_id, max(`date`) as last_date from message  where sender_id='.$user->getId().' or reciever_id='.$user->getId().' group by sender_id, reciever_id)
+                    AS lm on m.date = lm.last_date and m.sender_id=lm.sender_id and m.reciever_id=lm.reciever_id order by m.date DESC';
+
+        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
+        $stmt->execute([]);
+
+        return $stmt->fetchAll();
+
+
+    }
+    public function findConvMessages($user1,$user2)
+    {
+        return $this->createQueryBuilder('m')
+            ->Where('m.sender in (:user1,:user2)')
+            ->andWhere('m.Reciever in (:user1,:user2)')
+            ->setParameter('user1', $user1)
+            ->setParameter('user2', $user2)
+            ->getQuery()
+            ->getResult();
     }
     public function saveMessage(User $sender,User $reciever,Store $store,string $content)
     {

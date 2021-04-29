@@ -67,15 +67,59 @@ class MessageController extends AbstractController
         return new JsonResponse($data,Response::HTTP_OK);
     }
     /**
-     * @Route("/last_messages/user/{id}", name="userlastMessages", methods={"get"})
+     * @Route("/conversations/user/{id}", name="userConvs", methods={"get"})
      * @return JsonResponse
      */
-    public function getUserlastMessages($id): JsonResponse
+    public function getUserConverstions($id): JsonResponse
     {
         $user=$this->userRepository->find($id);
-        $messages = $this->messageRepository->findUserMessages($user);
-        return $messages;
+        $messages = $this->messageRepository->findUserConv($user);
+        foreach ($messages as $message) {
+
+            $data[] = [
+                "id"=> $message['id'],
+                "sender"=> $this->userRepository->find($message['sender_id'])->getUsername(),
+                "sender_id"=>$message['sender_id'],
+                "receiver"=> $this->userRepository->find($message['reciever_id'])->getUsername(),
+                "reciever_id" =>$message['reciever_id'],
+                "date"=> $message['date'],
+                "content"=>$message['content']
+            ];
+        }
+
+        if(!empty($data) &&count($data))
+            return new JsonResponse($data,Response::HTTP_OK);
+        else $data[]= [ 'message'=>'no data found'];
+        return new JsonResponse($data,Response::HTTP_OK);
+
     }
+
+    /**
+     * @Route("/messages/user1/{id}/user2/{id2}", name="convMessages", methods={"get"})
+     * @return JsonResponse
+     */
+    public function getConvMessages($id,$id2): JsonResponse
+    {
+        $user1=$this->userRepository->find($id);
+        $user2=$this->userRepository->find($id2);
+        $messages = $this->messageRepository->findConvMessages($user1,$user2);
+        foreach ($messages as $message) {
+
+            $data[] = [
+                "id"=> $message->getId(),
+                "sender_id"=> $message->getSender()->getId(),
+                "receiver_id"=> $message->getReciever()->getId(),
+                "date"=> $message->getDate(),
+                "content"=>$message->getContent()
+            ];
+        }
+
+        if(!empty($data) &&count($data))
+            return new JsonResponse($data,Response::HTTP_OK);
+        else $data[]= [ 'message'=>'no data found'];
+        return new JsonResponse($data,Response::HTTP_OK);
+    }
+
     /**
      * @Route("/messages", name="addMessage", methods={"post"})
      * @param Request $request
