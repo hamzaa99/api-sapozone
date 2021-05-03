@@ -59,7 +59,7 @@ class MessageRepository extends ServiceEntityRepository
             ->andWhere('m.Reciever in (:user1,:user2)')
             ->setParameter('user1', $user1)
             ->setParameter('user2', $user2)
-            ->add('orderBy','m.date desc')
+            ->add('orderBy','m.date asc')
             ->getQuery()
             ->getResult();
     }
