@@ -77,7 +77,7 @@ class MessageController extends AbstractController
         $known_id = [];
         foreach ($messages as $message) {
 
-            if( in_array($message['sender_id'],$known_id) || in_array($message['receiver_id'],$known_id)  ) {}
+            if( in_array($message['sender_id'],$known_id) || in_array($message['reciever_id'],$known_id)  ) {}
             else {
             $data[] = [
                 "id"=> $message['id'],
@@ -89,7 +89,11 @@ class MessageController extends AbstractController
                 "content"=>$message['content']
             ];
 
-            array_push($known_id,$message['sender_id'],$message['reciever_id']);
+            if ($message['sender_id'] != $id)
+            array_push($known_id,$message['sender_id']);
+            if ($message['reciever_id'] != $id)
+                array_push($known_id,$message['reciever_id']);
+
             }
         }
 
