@@ -81,7 +81,7 @@ class MessageController extends AbstractController
                 "sender"=> $this->userRepository->find($message['sender_id'])->getUsername(),
                 "sender_id"=>$message['sender_id'],
                 "receiver"=> $this->userRepository->find($message['reciever_id'])->getUsername(),
-                "receiver_id" =>$message['reciever_idver_id'],
+                "receiver_id" =>$message['reciever_id'],
                 "date"=> $message['date'],
                 "content"=>$message['content']
             ];
