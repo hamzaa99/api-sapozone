@@ -74,8 +74,11 @@ class MessageController extends AbstractController
     {
         $user=$this->userRepository->find($id);
         $messages = $this->messageRepository->findUserConv($user);
+        $known_id = [];
         foreach ($messages as $message) {
 
+            if( in_array($message['sender_id'],$known_id) || in_array($message['receiver_id'],$known_id)  ) {}
+            else {
             $data[] = [
                 "id"=> $message['id'],
                 "sender"=> $this->userRepository->find($message['sender_id'])->getUsername(),
@@ -85,6 +88,9 @@ class MessageController extends AbstractController
                 "date"=> $message['date'],
                 "content"=>$message['content']
             ];
+
+            array_push($known_id,$message['sender_id'],$message['reciever_id']);
+            }
         }
 
         if(!empty($data) &&count($data))
