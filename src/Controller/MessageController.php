@@ -141,8 +141,8 @@ class MessageController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
         if (isset($data)){
-            $sender = $this->userRepository->find($data['id_sender']);
-            $reciever = $this->userRepository->find($data['id_reciever']);
+            $sender = $this->userRepository->find($data['sender_id']);
+            $reciever = $this->userRepository->find($data['receiver_id']);
             $store = $this->storeRepository->find($data['id_store']);
             if(is_null($sender) ||is_null($reciever)||is_null($store)){
                 $data=[
