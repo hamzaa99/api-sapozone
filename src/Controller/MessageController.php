@@ -133,7 +133,7 @@ class MessageController extends AbstractController
     }
 
     /**
-     * @Route("/messages", name="addMessage", methods={"post"})
+     * @Route("/messages/", name="add_message", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
      */
