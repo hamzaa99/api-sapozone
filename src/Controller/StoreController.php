@@ -118,6 +118,44 @@ class StoreController extends AbstractController
 
         return new JsonResponse($data, Response::HTTP_OK);
     }
+
+    /**
+     * @Route("/stores/search/{query}", name="getAllsearch", methods={"GET"})
+     */
+    public function getAllbysearch($query): JsonResponse
+    {
+
+
+        $stores = $this->storeRepository->searchStore($query);
+
+
+
+
+        foreach ($stores as $store) {
+            $pictures = $store->getPictures();
+            if (!empty($pictures)){
+                $firstpicture=$pictures->get(0);
+                if(!empty($firstpicture))
+                    $url=$firstpicture->getLocation();
+                else $url="";
+            }
+            else $url="";
+            $data[] = [
+                "id" => $store->getId(),
+                "name" => $store->getName(),
+                "street_number" =>$store->getStreetNUMBER(),
+                "street_name" =>$store->getStreetName(),
+                "city" =>$store->getCity(),
+                "postal_code"=>$store->getPostalCode(),
+                "bio" =>$store->getBio(),
+                "owner" => $store->getOwner()->getId(),
+                "picture" => $url
+            ];
+        }
+
+
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
     /**
      * @Route("/stores/{id}", name="update_store", methods={"PUT"})
      */

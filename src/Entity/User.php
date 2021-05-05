@@ -174,11 +174,11 @@ class User
         $pp_url =$this->getProfilePicture()->getLocation();
         else $pp_url="";
 
-        if (is_null($this->getFirstname()))
+        if ($this->getFirstname()==null)
             $firstname = "";
         else $firstname =$this->getFirstname();
 
-        if (is_null($this->getName()))
+        if ($this->getName()==null)
             $lastname = "";
         else $lastname =$this->getName();
 
@@ -214,7 +214,7 @@ class User
             'password' => $this->getPassword(),
             'email' =>$this->getEmail(),
             'firstname' =>$firstname,
-            'lastname' =>$lastname,
+            'lastname' =>$lastname ,
                 'street_number' =>$streetnumber,
                 'street_name' =>$streetname,
                 'postal_code' =>$postalcode,

@@ -82,4 +82,15 @@ class StoreRepository extends ServiceEntityRepository
 
 
     }
+
+    public function searchStore($query){
+
+        $query = '%'.$query.'%';
+        return $this->createQueryBuilder('m')
+            ->Where('m.name LIKE :name')
+            ->setParameter('name', $query)
+
+            ->getQuery()
+            ->getResult();
+    }
 }

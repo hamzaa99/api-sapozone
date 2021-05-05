@@ -176,7 +176,7 @@ class UserController extends AbstractController
             empty($data['lastname']) ? true : $user->setName($data['lastname']);
             empty($data['firstname']) ? true : $user->setFirstname($data['firstname']);
             empty($data['email']) ? true : $user->setEmail($data['email']);
-            empty($data['streetname']) ? true : $user->setStreetname($data['streetname']);
+            empty($data['street_name']) ? true : $user->setStreetname($data['street_name']);
             empty($data['street_number']) ? true : $user->setStreetNumber($data['street_number']);
             empty($data['postal_code']) ? true : $user->setPostalCode($data['postal_code']);
             empty($data['city']) ? true : $user->setCity($data['city']);
