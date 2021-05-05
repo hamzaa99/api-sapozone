@@ -105,7 +105,7 @@ class MessageController extends AbstractController
     }
 
     /**
-     * @Route("/messages/user1/{id}/user2/{id2}", name="convMessages", methods={"get"})
+     * @Route("/messages/user1/{id}/user2/{id2}", name="convMessages2", methods={"get"})
      * @return JsonResponse
      */
     public function getConvMessages($id,$id2): JsonResponse
