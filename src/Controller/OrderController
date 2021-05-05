@@ -37,6 +37,76 @@ class OrderController extends AbstractController
         $this->requestRepository = $requestRepository;
     }
 
+    /**
+     * @Route("/orders/", name="add_request", methods={"POST"})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function add_store(Request $request): JsonResponse
+    {
+
+        $data = json_decode($request->getContent(), true);
+
+        $storeid = $data['store'];
+        $customerid = $data['customer'];
+        $detail = $data['detail'];
+        if (empty($data['price'])) $price=0;else $price = $data['price'];
+
+
+
+        $customer= $this->userRepository->find($customerid);
+        $store= $this->storeRepository->find($storeid);
+
+        if (empty($store) || empty($customer) || empty($detail)) {
+            throw new NotFoundHttpException('Expecting mandatory parameters!');
+        }
+        $id=$this->requestRepository->saveRequest($customer,$store,$detail,$price,$lead);
+        return new JsonResponse(['status' => 'request created!','id'=>$id], Response::HTTP_OK);
+    }
+
+    /**
+     * @Route("/userorders/{id}", name="user_request", methods={"GET"})
+     * @return JsonResponse
+     */
+    public function get_user_orders($id): JsonResponse
+    {
+
+        $customerid = $id;
+        $customer= $this->userRepository->find($customerid);
+      //  $requests=$this->requestRepository->findBy(['customer' => $customer]);
+        $orders=$this->orderRepository->findBy(['customer' => $customer]);
+        foreach ($orders as $order) {
+            $data[] = [
+                "id" => $order->getId(),
+                "detail" =>$order->getDetail(),
+                "price" =>$order->getPrice(),
+                "date" =>$order->getDate()
+            ];
+        }
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
+
+    /**
+     * @Route("/storeorders/{id}", name="store_product", methods={"GET"})
+     * @return JsonResponse
+     */
+    public function get_store_orders($id): JsonResponse
+    {
+
+
+        $store= $this->storeRepository->find($id);
+        $customer= $this->userRepository->find($store->getOwner()->getId());
+        $orders=$this->orderRepository->findBy(['Store' => $store]);
+        foreach ($orders as $order) {
+            $data[] = [
+                "id" => $order->getId(),
+                "detail" =>$order->getDetail(),
+                "price" =>$order->getPrice(),
+                "date" =>$order->getDate()
+            ];
+        }
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
 
 
 }

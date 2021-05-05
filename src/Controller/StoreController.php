@@ -69,6 +69,21 @@ class StoreController extends AbstractController
 
         return new JsonResponse($data, Response::HTTP_OK);
     }
+
+    /**
+     * @Route("/store/owner/{id}", name="get_one_store", methods={"GET"})
+     */
+    public function getuserstore($id):JsonResponse
+    {
+        $owner =  $this->userRepository->findOneBy(['id' => $id]);
+        $store = $this->storeRepository->findOneBy(['Owner' => $owner]);
+
+        if($store!=null)
+        $data = $store->toArray();
+        else
+        $data = ['status'=>"no store found"];
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
     /**
      * @Route("/storeowner/{id}", name="getstore_city", methods={"GET"})
      */
