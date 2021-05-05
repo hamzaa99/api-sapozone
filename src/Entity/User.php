@@ -173,19 +173,54 @@ class User
         if ($this->getProfilePicture()!=null)
         $pp_url =$this->getProfilePicture()->getLocation();
         else $pp_url="";
+
+        if (is_null($this->getFirstname()))
+            $firstname = "";
+        else $firstname =$this->getFirstname();
+
+        if (is_null($this->getName()))
+            $lastname = "";
+        else $lastname =$this->getName();
+
+        if (is_null($this->getStreetNumber()))
+            $streetnumber = "";
+        else $streetnumber =$this->getStreetNumber();
+
+        if (is_null($this->getStreetname()))
+            $streetname = "";
+        else $streetname =$this->getStreetname();
+
+        if (is_null($this->getCity()))
+            $city = "";
+        else $city =$this->getCity();
+
+        if (is_null($this->getPostalCode()))
+            $postalcode = "";
+        else $postalcode =$this->getPostalCode();
+
+        if (is_null($this->getPhoneNumber()))
+            $phonenumber = "";
+        else $phonenumber =$this->getPhoneNumber();
+
+        if (is_null($this->getBio()))
+            $bio = "";
+        else $bio =$this->getBio();
+
+
+
         return [
             'id' => $this->getId(),
             'username' => $this->getUsername(),
             'password' => $this->getPassword(),
             'email' =>$this->getEmail(),
-            'firstname' =>$this->getFirstname(),
-            'lastname' =>$this->getName(),
-                'street_number' =>$this->getStreetNumber(),
-                'street_name' =>$this->getStreetname(),
-                'postal_code' =>$this->getPostalCode(),
-                'city' =>$this->getCity(),
-            'phone_number'=>$this->getPhoneNumber(),
-            'bio'=>$this->getBio(),
+            'firstname' =>$firstname,
+            'lastname' =>$lastname,
+                'street_number' =>$streetnumber,
+                'street_name' =>$streetname,
+                'postal_code' =>$postalcode,
+                'city' =>$city,
+            'phone_number'=>$phonenumber,
+            'bio'=>$bio,
             'pp'=>$pp_url
 
 
