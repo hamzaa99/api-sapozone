@@ -59,7 +59,7 @@ class StoreController extends AbstractController
 
 
     /**
-     * @Route("/stores/{id}", name="get_one_store", methods={"GET"})
+     * @Route("/stores/{id}", name="get_onestore", methods={"GET"})
      */
     public function getOnestore($id):JsonResponse
     {
