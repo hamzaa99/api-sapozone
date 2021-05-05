@@ -78,11 +78,13 @@ class StoreController extends AbstractController
         $owner =  $this->userRepository->findOneBy(['id' => $id]);
         $store = $this->storeRepository->findOneBy(['Owner' => $owner]);
 
-        if($store!=null)
-        $data = $store->toArray();
+        if($store!=null) {
+            $data = $store->toArray();
+            return new JsonResponse($data, Response::HTTP_OK);
+        }
         else
-        $data = ['status'=>"no store found"];
-        return new JsonResponse($data, Response::HTTP_NOT_FOUND);
+        return new JsonResponse(['status' => 'store dosent exist'], Response::HTTP_NO_CONTENT);
+
     }
     /**
      * @Route("/storeowner/{id}", name="getstore_city", methods={"GET"})
@@ -203,13 +205,14 @@ class StoreController extends AbstractController
      */
     public function delete($id): JsonResponse
     {
-        $store = $this->storeRepository->findOneBy(['id' => $id]);
+
+        $owner =  $this->userRepository->findOneBy(['id' => $id]);
+        $store = $this->storeRepository->findOneBy(['Owner' => $owner]);
 
         if(empty($store)) return new JsonResponse(['status' => 'store dosent exist'], Response::HTTP_NO_CONTENT);
 
         $this->storeRepository->removeStore($store);
-
-        return new JsonResponse(['status' => 'user deleted'], Response::HTTP_OK);
+        return new JsonResponse(['status' => 'store deleted'], Response::HTTP_OK);
     }
 
 
