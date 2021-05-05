@@ -82,7 +82,7 @@ class StoreController extends AbstractController
         $data = $store->toArray();
         else
         $data = ['status'=>"no store found"];
-        return new JsonResponse($data, Response::HTTP_OK);
+        return new JsonResponse($data, Response::HTTP_NOT_FOUND);
     }
     /**
      * @Route("/storeowner/{id}", name="getstore_city", methods={"GET"})
@@ -199,7 +199,7 @@ class StoreController extends AbstractController
         return new JsonResponse($updatedstore->toArray(), Response::HTTP_OK);
     }
     /**
-     * @Route("/stores/{id}", name="delete_customer", methods={"DELETE"})
+     * @Route("/stores/{id}", name="delete", methods={"DELETE"})
      */
     public function delete($id): JsonResponse
     {
