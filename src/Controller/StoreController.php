@@ -201,12 +201,12 @@ class StoreController extends AbstractController
         return new JsonResponse($updatedstore->toArray(), Response::HTTP_OK);
     }
     /**
-     * @Route("/stores/{id}", name="delete", methods={"DELETE"})
+     * @Route("/stores/{id}", name="delete_store", methods={"DELETE"})
      */
     public function delete($id): JsonResponse
     {
 
-        $owner =  $this->userRepository->findOneBy(['id' => $id]);
+        $owner = $this->userRepository->findOneBy(['id' => $id]);
         $store = $this->storeRepository->findOneBy(['Owner' => $owner]);
 
         if(empty($store)) return new JsonResponse(['status' => 'store dosent exist'], Response::HTTP_NO_CONTENT);

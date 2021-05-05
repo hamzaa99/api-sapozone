@@ -24,7 +24,7 @@ class Store
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="Store", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="Store")
      */
     private $Owner;
 
