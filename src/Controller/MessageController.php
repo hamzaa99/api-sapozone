@@ -143,10 +143,22 @@ class MessageController extends AbstractController
         if (isset($data)){
             $sender = $this->userRepository->find($data['sender_id']);
             $reciever = $this->userRepository->find($data['receiver_id']);
-            $store = $this->storeRepository->find($data['id_store']);
-            if(is_null($sender) ||is_null($reciever)||is_null($store)){
+            $store = $this->storeRepository->find(41);
+            if(is_null($reciever)){
                 $data=[
                     'error'=>"reciever not found"
+                ];
+                return new JsonResponse($data,Response::HTTP_OK);
+            }
+            if(is_null($sender) ){
+                $data=[
+                    'error'=>"sender not found"
+                ];
+                return new JsonResponse($data,Response::HTTP_OK);
+            }
+            if(is_null($store)){
+                $data=[
+                    'error'=>"store not found"
                 ];
                 return new JsonResponse($data,Response::HTTP_OK);
             }
