@@ -83,7 +83,7 @@ class StoreController extends AbstractController
             return new JsonResponse($data, Response::HTTP_OK);
         }
         else
-        return new JsonResponse(['status' => 'store dosent exist'], Response::HTTP_NO_CONTENT);
+        return new JsonResponse(['status' => 'store dosent exist'], Response::HTTP_NOT_FOUND);
 
     }
     /**
